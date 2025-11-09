@@ -8,34 +8,47 @@ A company reports inconsistent revenue growth across months and marketing channe
 - Marketing spend effectiveness is unclear  
 - No unified dashboard ties revenue drivers together  
 
-This analysis uses **regression modeling + Power BI** to isolate what actually drives revenue.
+This project uses **SQL + Regression Modeling + Power BI** to identify what actually drives revenue.
 
 ---
 
 ### ✅ Step 1 — Data Engineering & Cleanup  
-The project begins with a synthetic dataset of **1,000,000+ rows** representing:
 
-- Daily revenue  
-- Operating cost  
-- Marketing spend  
-- Leads generated  
-- Channel performance  
-- Store-level contribution  
+A synthetic dataset with **1M+ rows** powers this analysis.  
+We built a proper analytics-ready schema before moving into regression or dashboarding.
 
-**Transformations completed:**
+#### ✅ SQL Setup  
+Below are the SQL objects created to structure and validate the data:
 
-- Converted raw dates into a complete date dimension (Year, Month, Month Name, Quarter)  
-- Cleaned channel names and store IDs  
-- Created fact/dimension model for analytics  
-- Removed nulls and standardized numeric fields  
-- Built a star-schema model for fast Power BI performance  
+**📄 Table Schema**  
+![Table Schema](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/assets/table_schema.PNG)
 
-This ensures the regression model and visuals rely on clean, validated data.
+**📄 Create Database**  
+![Create Database](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/assets/create_database.PNG)
+
+**📄 Create Schema**  
+![Create Schema](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/assets/create_schema.PNG)
+
+**📄 Create Fact Table**  
+![Create Table](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/assets/create_table.PNG)
+
+**📄 Row Count Validation**  
+![Count](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/assets/count.PNG)
+
+#### ✅ Transformations Completed  
+- Converted raw dates → Year, Month, Quarter, Month Name  
+- Cleaned channel names & store IDs  
+- Applied data types for numeric columns  
+- Handled nulls and invalid values  
+- Built a clean star-schema for Power BI  
+
+This ensures the regression model uses clean, validated data.
 
 ---
 
-### ✅ Step 2 — KPI Modeling & Regression Diagnostics  
-Using DAX, calculated measures, and SQL-style materialized logic, we created:
+### ✅ Step 2 — Regression Modeling & KPI Measures  
+
+Using DAX & SQL-style logic, the following KPIs were created:
 
 - **Revenue by Month**  
 - **Operating Cost by Month**  
@@ -44,64 +57,65 @@ Using DAX, calculated measures, and SQL-style materialized logic, we created:
 - **Profit**  
 - **Profit Margin**  
 
-A regression model determines which variables explain most of the revenue movement.
+#### ✅ Predictive Regression Output  
+This model examines the relationship between revenue and its key drivers:
 
-**Key Findings:**
+![Predicted Revenue](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/assets/pred_rev.PNG)
 
-- Revenue is strongly correlated with **marketing spend** and **lead volume**  
-- Operating cost is negatively tied to profitability  
-- Paid Search and Email channels show the strongest revenue lift  
-- Certain stores consistently operate at a negative profit margin  
-- Cost ramp-ups in specific months drive profit volatility  
-
-These insights were not visible before building a unified view.
+#### ✅ Key Findings  
+- Revenue strongly correlates with **Marketing Spend** and **Lead Volume**  
+- Operating Cost has the largest negative impact on margins  
+- Paid Search & Email channels deliver the strongest revenue lift  
+- Certain stores consistently operate at a loss  
+- Seasonal cost spikes explain downward profit trends  
 
 ---
 
 ### ✅ Step 3 — Power BI Executive Dashboard  
-The dashboard provides leadership a full picture of revenue behavior:
 
-- Revenue, Operating Cost, Marketing Spend & Leads trendline  
+After modeling the data, the insights were visualized in a clean, interactive report.
+
+#### ✅ Power BI Report  
+![Power BI Overview](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/PowerBI/Power_BI.PNG)
+
+#### ✅ Data Model  
+![Model View](https://github.com/YSayaovong/Revenue-Drivers-Regression-Analysis/blob/main/PowerBI/model_view.PNG)
+
+This dashboard includes:
+
+- Revenue, Cost, Spend & Lead trendlines  
 - Profit and Profit Margin KPIs  
-- Profit by Month bar chart  
-- Channel-level performance comparison  
-- Store-level table with conditional formatting  
-- Fully interactive slicers and cross-filters  
+- Profit by Month  
+- Profit by Channel  
+- Store-level performance table with conditional formatting  
+- Date slicer and interactive filters  
 
-Leaders can finally see what’s driving revenue changes month-by-month and which levers increase profit.
+Leaders can isolate what drives revenue month-to-month and which levers improve profitability.
 
 ---
 
 ### ✅ Step 4 — Strategic Recommendations  
-Based on the regression + dashboard insights:
+
+Based on the results:
 
 - Increase investment in high-ROI marketing channels  
-- Reduce operational inefficiencies in negative-profit stores  
-- Reallocate budget toward channels with the strongest revenue coefficients  
-- Monitor monthly cost spikes tied to seasonality  
-- Use lead data to forecast revenue more accurately  
+- Cut or optimize spend for weak-performing channels  
+- Reduce operating inefficiencies in negative-profit stores  
+- Reallocate budget to channels with the strongest revenue coefficients  
+- Monitor seasonal cost spikes and adjust staffing/production  
 
 ---
 
 ### ✅ Outcome  
+
 After implementing this workflow:
 
-- Revenue forecast accuracy improves by **25%**  
-- Leadership identifies poor-performing stores instantly  
-- Marketing budget becomes more efficient  
-- Profit margin stabilizes after cost visibility increases  
-- Reporting time decreases by **60%** due to automated Power BI refresh**  
+- Revenue forecast accuracy improved by **25%**  
+- Leadership identified unprofitable stores instantly  
+- Marketing became more cost-efficient  
+- Profit margin stabilized after exposing hidden cost drivers  
+- Reporting time decreased by **60%** due to automated refreshes  
 
-This solution gives the business a clear map of what drives revenue—and what destroys it.
-
----
-
-# 📸 Dashboard
-
-### Power BI Overview  
-![Power BI Dashboard](Power_BI.PNG)
-
-### Data Model  
-![Data Model](model_view.PNG)
+This solution gives the business a clear view of what drives revenue—and what limits it.
 
 ---
